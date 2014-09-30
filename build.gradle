@@ -1,0 +1,61 @@
+subprojects {
+ 	repositories {
+        maven { url "http://repo.spring.io/libs-release" }
+        mavenLocal()
+        mavenCentral()
+    }
+    
+    buildscript {
+	    repositories {
+	        mavenLocal()
+	        mavenCentral()
+	        maven { url "http://repo.spring.io/libs-release" }
+	    }
+	    dependencies {
+	        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.1.6.RELEASE")
+	    }
+	}
+
+    apply plugin: 'maven'
+    apply plugin: 'java'
+    apply plugin: 'eclipse'
+    apply plugin: 'idea'
+    
+    
+    compileJava.options.encoding = 'UTF-8'
+	
+	sourceCompatibility = 1.8
+	targetCompatibility = 1.8
+
+  
+	configurations {
+	    provided
+	}
+
+    dependencies {
+        compile "org.projectlombok:lombok:1.14.8"
+        testCompile "org.springframework.boot:spring-boot-starter-test"
+        testCompile 'junit:junit:4.8.2'
+    }
+
+    version = '1.0'
+    
+    task wrapper(type: Wrapper) {
+    	gradleVersion = '2.1'
+	}
+}
+
+project(':ihome-api') {
+	dependencies {
+		compile project(':ihome-to')
+		compile project(':ihome-lib')
+		compile project(':ihome-services')
+	}
+}
+
+project(':ihome-services') {
+	dependencies {
+		compile project(':ihome-to')
+		compile project(':ihome-lib')
+	}
+}

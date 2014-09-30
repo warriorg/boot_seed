@@ -1,0 +1,8 @@
+build/
+bin/
+ihome-app-server.iml
+.settings/
+.idea/
+.project
+.classpath
+*.iml

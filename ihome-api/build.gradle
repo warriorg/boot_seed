@@ -1,0 +1,17 @@
+
+apply plugin: 'spring-boot'
+apply plugin: 'war'
+
+configurations {
+    providedRuntime
+}
+
+dependencies {
+	compile("org.springframework.boot:spring-boot-starter-web")
+	providedRuntime("org.springframework.boot:spring-boot-starter-tomcat")
+}
+
+war {
+    baseName = 'ihome'
+    version =  '1.0'
+}
